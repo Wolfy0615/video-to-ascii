@@ -145,8 +145,8 @@ class AsciiStrategy(re.RenderStrategy):
             if frame is None:
                 break
             if with_audio:
-                data = wave_file.readframes(chunk)
-                stream.write(data)
+#                 data = wave_file.readframes(chunk)
+#                 stream.write(data)
             # sleep if the process was too fast
             if output is None:
                 if PLATFORM:
@@ -191,8 +191,8 @@ class AsciiStrategy(re.RenderStrategy):
 
             counter += 1
         if with_audio:
-            stream.close()
-            p.terminate()
+#             stream.close()
+#             p.terminate()
         if PLATFORM:
             sys.stdout.write("echo -en '\033[2J' \n")
         else:
