@@ -144,7 +144,7 @@ class AsciiStrategy(re.RenderStrategy):
             _ret, frame = cap.read()
             if frame is None:
                 break
-            if with_audio:
+#             if with_audio:
 #                 data = wave_file.readframes(chunk)
 #                 stream.write(data)
             # sleep if the process was too fast
@@ -190,7 +190,7 @@ class AsciiStrategy(re.RenderStrategy):
                         file.write("]\n" if i == (len(lines) - 1)  else ",\n")
 
             counter += 1
-        if with_audio:
+#         if with_audio:
 #             stream.close()
 #             p.terminate()
         if PLATFORM:
