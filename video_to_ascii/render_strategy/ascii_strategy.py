@@ -94,20 +94,28 @@ class AsciiStrategy(re.RenderStrategy):
         fps = fps or 30
 
         if with_audio:
+            os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
             import pyaudio
             import wave
+            import pygame
 
             temp_dir = tempfile.gettempdir()
             temp_file_path = temp_dir + "/temp-audiofile-for-vta.wav"
             wave_file = wave.open(temp_file_path, 'rb')
             chunk = int(wave_file.getframerate() / fps)
-            p = pyaudio.PyAudio()
+#             p = pyaudio.PyAudio()
 
-            stream = p.open(format =
-                p.get_format_from_width(wave_file.getsampwidth()),
-                channels = wave_file.getnchannels(),
-                rate = wave_file.getframerate(),
-                output = True)
+#             stream = p.open(format =
+#                 p.get_format_from_width(wave_file.getsampwidth()),
+#                 channels = wave_file.getnchannels(),
+#                 rate = wave_file.getframerate(),
+#                 output = True)
+
+            pygame.init()
+            pygame.mixer.pre_init(44100, -16, 2, 2048)
+            pygame.mixer.init()
+            pygame.mixer.music.load(temp_file_path)
+            pygame.mixer.music.play()
                        
             data = wave_file.readframes(chunk)
             
